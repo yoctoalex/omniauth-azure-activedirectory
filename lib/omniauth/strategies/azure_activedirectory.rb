@@ -359,7 +359,7 @@ module OmniAuth
             # The key also contains other fields, such as n and e, that are
             # redundant. x5c is sufficient to verify the id token.
             if x5c = key['x5c'] and !x5c.empty?
-              OpenSSL::X509::Certificate.new(JWT::Decode.base64url_decode(x5c.first)).public_key
+              OpenSSL::X509::Certificate.new(JWT::Base64.url_decode(x5c.first)).public_key
             # no x5c, so we resort to e and n
             elsif exp = key['e'] and mod = key['n']
               key = OpenSSL::PKey::RSA.new
