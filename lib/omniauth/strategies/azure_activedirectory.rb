@@ -152,7 +152,7 @@ module OmniAuth
         uri = URI(openid_config['authorization_endpoint'])
         params = {
           client_id: client_id,
-          scope: "openid",
+          scope: "openid profile",
           redirect_uri: redirect_uri,
           response_mode: response_mode,
           response_type: response_type,
