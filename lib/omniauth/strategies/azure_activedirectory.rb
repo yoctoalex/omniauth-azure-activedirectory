@@ -71,7 +71,7 @@ module OmniAuth
       uid { @claims['sub'] }
       info do
         { name: @claims['name'],
-          email: @claims['email'] || @claims['upn'],
+          email: @claims['email'] || @claims['upn'] || @claims['preferred_username'],
           first_name: @claims['given_name'],
           last_name: @claims['family_name'] }
       end
