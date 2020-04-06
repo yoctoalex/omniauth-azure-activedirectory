@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 As this is an unoficial fork, no actual Gems are released for any version.
 
+## [1.2.1] - 2020-04-06
+
+### Added
+- fallback to preferred\_username for info[:email]
+
+## [1.2.0]
+
+### Changed
+- requests the profile scope in addition to the openid scope by default
+- updated JWT to ~> 2.2.0
+
 ## [1.1.0] - 2019-01-05
 
 ### Added
