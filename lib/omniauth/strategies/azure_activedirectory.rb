@@ -110,7 +110,11 @@ module OmniAuth
       # Overridden method from OmniAuth::Strategy. This is the first step in the
       # authentication process.
       def request_phase
-        redirect authorize_endpoint_url
+        if options.client_id.nil? || options.tenant.nil?
+          [ 400, {}, ["Invalid Tenant"] ]
+        else
+          redirect authorize_endpoint_url
+        end
       end
 
       ##
