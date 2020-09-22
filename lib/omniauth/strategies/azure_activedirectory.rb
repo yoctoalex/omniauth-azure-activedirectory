@@ -122,6 +122,12 @@ module OmniAuth
       # the authentication process. It is called after the user enters
       # credentials at the authorization endpoint.
       def callback_phase
+        # invalid config would lead to failure in validate_and_parse_id_token
+        # later anyway, so catch that here and fail in a defined manner
+        if options.client_id.nil? || options.tenant.nil?
+          return [ 400, {}, ["Invalid Tenant"] ]
+        end
+
         if error = request.params['error_reason'] || request.params['error']
 
           if error == 'access_denied' and
