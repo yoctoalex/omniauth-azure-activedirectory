@@ -152,8 +152,8 @@ module OmniAuth
         @claims, @header = validate_and_parse_id_token(@id_token)
         validate_chash(@code, @claims, @header)
         super
-      rescue JWT::VerificationError
-        return [ 400, {}, ["Invalid ID token"] ]
+      rescue JWT::VerificationError, JWT::DecodeError
+        return [ 400, {}, ["Invalid ID token: #{$!}"] ]
       end
 
       private
